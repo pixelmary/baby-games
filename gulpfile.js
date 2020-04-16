@@ -7,21 +7,21 @@ sass.compiler = require('node-sass');
 gulp.task('browserSync', () => {
   browserSync.init({
     server: {
-      baseDir: 'app'
+      baseDir: 'docs'
     },
   })
 })
 
 gulp.task('sass', () => {
-    return gulp.src('app/scss/main.scss')
+    return gulp.src('docs/scss/main.scss')
         .pipe(sass())
-        .pipe(gulp.dest('app/css'))
+        .pipe(gulp.dest('docs/css'))
         .pipe(browserSync.reload({
           stream: true
         }))
 });
 
 gulp.task('watch', () => {
-    gulp.watch('app/scss/main.scss', gulp.series('sass'));
+    gulp.watch('docs/scss/main.scss', gulp.series('sass'));
 });
 

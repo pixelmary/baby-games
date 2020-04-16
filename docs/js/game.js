@@ -91,6 +91,7 @@ const checkCards = () => {
   }
 }
 
+
 const checkCorrect = () => {
   console.log('iguales');
   const cardLis = document.querySelectorAll('.flip-card');
