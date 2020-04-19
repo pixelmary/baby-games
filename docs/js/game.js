@@ -6,32 +6,31 @@ let activeCards = [];
 const timer = 1000;
 const maxCards = 8;
 
-// const toggleFullScreen = () => {
-//   const doc = window.document;
-//   const docEl = doc.documentElement;
-//   const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-//   const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+const toggleFullScreen = () => {
+  const doc = window.document;
+  const docEl = doc.documentElement;
+  const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
   
-//   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-//     requestFullScreen.call(docEl);
-//   } else {
-//     cancelFullScreen.call(doc);
-//   }
-// }
+  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+  } else {
+    cancelFullScreen.call(doc);
+  }
+}
+
+toggleFullScreen();
 
 const init = () => {
-  // toggleFullScreen();
   addListeners();
 }
 
 window.addEventListener('load', init)
 
 const cardsButtons = document.querySelectorAll('.button');
-
 const addListeners = () => cardsButtons.forEach(button => button.addEventListener('click',startGame));
 
 const startLayer = document.querySelector('#start');
-
 const hideStartLayer = () => startLayer.classList.add('hide');
 
 const startGame = (evt) => {
@@ -40,15 +39,6 @@ const startGame = (evt) => {
   createCards(cardDesign);
   shuffleCards();
 }
-
-
-
-
-
-
-
-
-
 
 const shuffleArray = (arr) => {
   const randomnizeArr = arr;
@@ -69,20 +59,19 @@ const createCards = (design) => {
     const divInner = document.createElement('div');
     const divFront = document.createElement('div');
     const divBack = document.createElement('div');
-    const fooFrontContent = document.createTextNode("front");
-    const fooBackContent = document.createTextNode("back");
+
     li.id = `card-${i}`;
     li.setAttribute('class', 'flip-card');
     divInner.setAttribute('class', 'flip-card-inner');
     divFront.setAttribute('class', 'flip-card-front');
     divBack.setAttribute('class', 'flip-card-back');
-    divFront.appendChild(fooFrontContent);
-    divBack.appendChild(fooBackContent);
+
     divInner.appendChild(divFront);
     divInner.appendChild(divBack);
     li.appendChild(divInner);
     cardUl.appendChild(li);
     cardUl.classList.add(design);
+
     li.addEventListener('click', flipCard);
   }
 }
@@ -140,5 +129,3 @@ const isIncorrect = () => {
     activeCards = [];
   })
 }
-
-//window.addEventListener('load', init);
